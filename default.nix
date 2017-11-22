@@ -1,21 +1,17 @@
 with import <nixpkgs> { };
-with goPackages;
 
 let 
   myDeps =  (import ./myDeps.nix);
 in
 
 buildGoPackage rec {
-  name = "cfp-${version}";
+  name = "nagios-reporting-${version}";
   version = "0.0.1";
 
-  shellHook = ''
-  '';
+  src = ./.;
 
-  goPackagePath = "github.com/sadfll/csdffp";
+  goPackagePath = "github.com/nixcloud/nagios-reporting";
 
-  buildInputs = with myDeps; [ letsencrypt jq gomailv2 captcha go gocraft-web CompileDaemon.bin postgresql gorm inflection pq crypto net];
- # ++ [gocode.bin];
-# ++ [ gorilla-sessions gorilla-context gorilla-securecookie];
+  buildInputs = with myDeps; [ gocraft-web ]; 
 }
 

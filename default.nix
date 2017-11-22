@@ -1,10 +1,10 @@
-with import <nixpkgs> { };
+{ pkgs, ... }:
 
 let 
   myDeps =  (import ./myDeps.nix);
 in
 
-buildGoPackage rec {
+pkgs.buildGoPackage rec {
   name = "nagios-reporting-${version}";
   version = "0.0.1";
 
